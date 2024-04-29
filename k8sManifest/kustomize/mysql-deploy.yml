@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: emp-mysql-deployment
+  namespace: abhijeet
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: emp-mysql-app
+  template:
+    metadata:
+      labels:
+        app: emp-mysql-app
+    spec:
+      containers:
+      - name: emp-mysql-cont
+        image: mysql
+        ports:
+        - containerPort: 3306
+        envFrom:
+          - configMapRef:
+             name: emp-mysql-config
+#        volumeMounts:
+#        - name: mysql-config-volume
+#          mountPath: /etc/mysql/conf.d
+#      volumes:
+#      - name: mysql-config-volume
+#        configMap:
+#         name: emp-mysql-config 

@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: emp-mysql-config
+  namespace: abhijeet
+data:
+  MYSQL_ROOT_PASSWORD: Cybage@123  # Base64 encoded value of "Cybage@123"
+  MYSQL_DATABASE: ems          # Base64 encoded value of "ems"

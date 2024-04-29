@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata: 
+  name: emp-springboot-deployment
+  namespace: abhijeet
+spec: 
+  replicas: 1
+  selector:
+    matchLabels: 
+      app: emp-springboot-app
+  template: 
+    metadata:
+      labels:
+        app: emp-springboot-app
+    spec:
+      containers:
+      - name: emp-springboot-cont
+        image: sohampa/abhijeet-springboot-app:latest
+        envFrom:
+        - configMapRef:
+            name: emp-springboot-config
+        ports:
+        - containerPort: 8080
+        volumeMounts:
+        - name: spring-boot-config-volume
+          mountPath: /config
+      volumes:
+      - name: spring-boot-config-volume
+        configMap:
+         name: emp-springboot-config

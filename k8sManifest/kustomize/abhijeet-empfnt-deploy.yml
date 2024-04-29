@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: angular-emp-deployment
+  namespace: abhijeet
+spec:
+  selector: 
+    matchLabels: 
+      app: employee-app
+  replicas: 1
+  template: 
+    metadata: 
+      labels: 
+        app: employee-app
+    spec: 
+      containers: 
+      - name: emp-angular-cont
+        image: sohampa/abhijeet-angular-app:latest
+        ports:
+        - containerPort: 80
+
